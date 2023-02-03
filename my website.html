@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tomatcree Website v1</title>
+    <link rel="icon" href="https://m.media-amazon.com/images/I/51hbl5f9OrL._AC_SY350_QL15_.jpg">
+    <style>
+      body {
+        background-image: url('file:///Users/user/Downloads/Comp_sci/DALL·E\ backround\ of\ a\ frozen\ lake\ with\ snow\ topped\ mountain.png');
+        background-size: cover; /* stretch the image to cover the entire background*/
+        text-align: center;
+        font-size: 38px;
+        font-family: "Segoe UI", sans-serif;
+        font-weight: bold;
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tomatcree</h1>
+    <div class="container">
+        <label for="projects">Projects:</label>
+        <select id="projects" name="projects" onchange="window.location.href = this.value;">
+          <option value="">Select a project</option>
+          <option value="7song.html">2 songs</option>
+          <option value="https://chat.openai.com">AI IS BETTER</option>
+          <option value="https://github.com/Tomatcree01">My github</option>
+        </select>
+      </div>
+      <style>
+      .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      select {
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 5px;
+        margin: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+        border: 1px dotted bisque;
+        background: #2a3eaf;
+        color: #fff;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pr;
+      }
+      
+   
