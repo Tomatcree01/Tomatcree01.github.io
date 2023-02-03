@@ -1,5 +1,9 @@
+.title {
+  font-size: 45px;
+  transition: all 0.5s ease-in-out;
+}
 body {
-    background-image: url('file://DALL·E\ backround\ of\ a\ frozen\ lake\ with\ snow\ topped\ mountain.png');
+    background-image: url('https://github.com/Tomatcree01/tomatcree01.github.io/blob/b3c422134e9fba91d2589247bb365bd235562567/DALL%C2%B7E%20backround%20of%20a%20frozen%20lake%20with%20snow%20topped%20mountain.png?raw=true');
     background-size: cover; /* stretch the image to cover the entire background*/
     text-align: center;
     font-size: 38px;
