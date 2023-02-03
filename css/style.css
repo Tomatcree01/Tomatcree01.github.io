@@ -1,0 +1,34 @@
+body {
+    background-image: url('file://DALL·E\ backround\ of\ a\ frozen\ lake\ with\ snow\ topped\ mountain.png');
+    background-size: cover; /* stretch the image to cover the entire background*/
+    text-align: center;
+    font-size: 38px;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: bold;
+    scroll-behavior: smooth;
+  }
+
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  select {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+    border: 1px dotted bisque;
+    background: #2a3eaf;
+    color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pr;
+  }
+  
+
