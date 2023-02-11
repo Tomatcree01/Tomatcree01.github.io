@@ -1,33 +1,66 @@
 .title {
   font-size: 45px;
-  transition: all 0.5s ease-in-out;
-}
-body {
-    background-image: url('https://github.com/Tomatcree01/tomatcree01.github.io/blob/b3c422134e9fba91d2589247bb365bd235562567/DALL%C2%B7E%20backround%20of%20a%20frozen%20lake%20with%20snow%20topped%20mountain.png?raw=true');
-    background-size: cover; /* stretch the image to cover the entire background*/
-    background-blend-mode: color-burn;
-    text-align: center;
-    font-size: 38px;
-    font-family: "Segoe UI", sans-serif;
-    font-weight: bold;
-    scroll-behavior: auto;
+  animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+  from {
+  opacity: 0;
+  font-size: 70px;
+  }
+  to {
+  opacity: 1;
+  }
   }
 
-.container{
+  body {
+      background-image: url('00002-1583304560.png');
+      backdrop-filter: blur(8px);
+      position: absolute;
+      background-size: cover;
+      text-align: left;
+      font-size: 38px;
+      font-family: "Segoe UI", sans-serif;
+      font-weight: bold;
+      scroll-behavior: smooth;
+      color: rgb(204, 221, 242);
+  }
+
+select {
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 5px;
+  margin: 10px;
+  font-family: "Segoe UI", sans-serif;
+  border: 0.5px dotted bisque;
+  background: #fff;
+  color: #2a3eaf;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  }
+  select:hover {
+    background-color: #878d1162;
+  }
+  
+  .crcle {
+  width: 250px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: blue;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, blue, rgb(13, 203, 13));
+  align-items: center;
+  justify-content: center;
+}
+  .content {
+    position: relative;
+    z-index: 102;
+    height: 100%;
+    width: 100%;
+    padding: 50px;
+  }
+  
+  .container{
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
-  select {
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 5px;
-    margin: 10px;
-    font-family: 'Segoe UI', sans-serif;
-    border: 1px dotted bisque;
-    background: #2a3eaf;
-    color: #fff;
-  }
-  
-
