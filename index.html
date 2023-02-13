@@ -1,29 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-16">
+    <link href="stuff/style.css" rel="stylesheet">
+    <meta charset="UTF-8"><!--
+  _____                               _                                    
+ |_   _|   ___    _ __ ___     __ _  | |_    ___   _ __    ___    ___ 
+   | |    / _ \  | '_ ` _ \   / _` | | __|  / __| | '__|  / _ \  / _ \
+   | |   | (_) | | | | | | | | (_| | | |_  | (__  | |    |  __/ |  __/
+   |_|    \___/  |_| |_| |_|  \__,_|  \__|  \___| |_|     \___|  \___|
+                                                                      
+        Im bad at website design, Im a noob. -->
     		<!-- Mobile meta -->
 		<meta name="HandheldFriendly" content="true" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
 		<!-- End mobile meta -->
-    <title>¨Tomatcree¨</title>
-    <link href="css/style.css" rel="stylesheet">
+    <title>Tomatcree</title>
     <link rel="icon" href="https://m.media-amazon.com/images/I/51hbl5f9OrL._AC_SY350_QL15_.jpg">
   </head>
   <body>
+    <div id="clock" style="position: fixed; top: 5%; left: 50%; transform: translate(-50%, 0); font-size: 60px;   -webkit-text-stroke:3px rgb(152, 152, 152);   -webkit-text-fill-color:transparent;"></div>
+<script>
+// Get the clock container
+var clock = document.getElementById("clock");
+// Function to display the time in 12-hour format
+function displayTime() {
+  // Get the current time
+  var now = new Date();
+  // Get the hours, minutes, and seconds
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+  // Convert hours to 12-hour format
+  hours = (hours > 12) ? hours - 12 : hours;
+  // Add leading zeros to minutes and seconds if necessary
+  minutes = (minutes < 10) ? "0" + minutes : minutes;
+  seconds = (seconds < 10) ? "0" + seconds : seconds;
+  // Update the clock text
+  clock.innerHTML = hours + ":" + minutes + ":" + seconds;
+}
+
+// Call the displayTime function every 999 ms lol just bcuz
+setInterval(displayTime, 999);
+</script>
+
+    <main>
     <h1 class="title">Tomatcree</h1>
-      <div class="content">
-      <div class="crcle">
-        <div class="container">
-          <label for="projects">Projects:</label>
-          <select id="projects" name="projects" onchange="window.location.href = this.value;">
-            <option value="">Some projects</option>
-            <option value="https://github.com/SuperSonicHub1/supersonichub1.github.io">Current project:</option>
-            <option value="https://chat.openai.com">AI da future</option>
-            <option value="https://github.com/Tomatcree01">My github</option>
-          </select>
+    <div class="links">
+      <a class="link cursor-hover-item" href="https://github.com/SuperSonicHub1/shodan-at-home" data-cursor-text="GO HERE!" data-cursor-text-repeat="4"><h2>Current github project</h2></a>
+    </div>
+    <div class="socials">
+      <div class="social cursor-hover-item github" data-cursor-text="GITHUB ;)" data-cursor-text-repeat="4">
+        <a class="change-color" href="https://github.com/Tomatcree01">
+        <ion-icon name="logo-github"></ion-icon>
+        </a>
       </div>
-    <script type="text/javascript" src="snowflake.js"></script>
-  </body>
+      <div class="social cursor-hover-item youtube" data-cursor-text="YOUTUBE" data-cursor-text-repeat="4">
+        <a class="change-color" href="https://www.youtube.com/channel/UC_VAGAC3mOermTbG67pj05A">
+        <ion-icon name="logo-youtube"></ion-icon>
+      </a>
+      </div>
+        <div class="social cursor-hover-item discord" data-cursor-text="DISCORD!" data-cursor-text-repeat="4" id="discord-icon">
+          <ion-icon name="logo-discord"></ion-icon>
+        </div>
+      </div>
+      <div class="clipboard-notification" id="clipboard-notification">Copied to clipboard</div>
+      <div class="progress-bar" id="progress-bar"></div>
+  </main>
+
+  <div class="cursor">
+    <div class="cursor--small"></div>
+    <div class="cursor--large"></div>
+    <div class="cursor--text">
+      <div class="text">GO HERE! GO HERE! GO HERE! GO HERE! </div>
+    </div>
+  </div>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js" type="text/javascript"></script>
+  <script src="stuff/howler.js"></script>
+    <script>
+      var sound = new Howl({
+        src: ['stuff/sound.mp3'],
+        loop: true,
+        html5: true,
+        volume: 0.4,
+        autoplay: true,
+        fade: [10000, 90000],
+      });
+    </script>
+  <script src="stuff/cursor.js" type="text/javascript"></script>
+  <script src="stuff/discord-copy.js" type="text/javascript"></script>
+</body>
 </html>
