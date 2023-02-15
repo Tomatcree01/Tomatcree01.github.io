@@ -7,13 +7,11 @@
   -webkit-user-drag: none;
   padding: 0; }
 
-
 .title {
   font-size: 39px;
   text-align: center;
   align-items: baseline;
-  //border thing;
-  border: dotted 4px rgb(46, 41, 41);
+  border: dotted 4px #2e2929;
   animation: fadeIn 1.6s ease-in-out; }
 
 @keyframes fadeIn {
@@ -40,7 +38,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;}
+  overflow: hidden; }
 
 main {
   height: 190px;
@@ -85,7 +83,7 @@ main .links .link:hover::after {
 main .socials {
   display: flex;
   justify-content: center;
-  align-items: flex-start;}
+  align-items: flex-start; }
 
 main .socials .social {
   --icon-size: 38px;
@@ -185,7 +183,7 @@ main .socials .social.discord {
 .change-color {
   color: #fff; }
 
-.snow{
+.snow {
   height: 100%;
   position: absolute;
-  width: 100% }
+  width: 100%; }
