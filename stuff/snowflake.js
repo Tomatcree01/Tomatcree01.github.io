@@ -1,87 +1,121 @@
-//decaped idk how tf
-var snowflakes = [];
-var canvas;
-var context;
-var snowflakeCount = 100;
-var blizzardActive = false;
+const Snow = (canvas, count, options) => {
+  const ctx = canvas.getContext('2d')
+  const snowflakes = []
+ 
+  const add = item => snowflakes.push(item(canvas))
 
-// Snowflake object
-function Snowflake(x, y, size, speed) {
-this.x = x;
-this.y = y;
-this.size = size;
-this.speed = speed;
-}
+  const update = () => _.forEach(snowflakes, el => el.update())
+ 
+  const resize = () => {
+    ctx.canvas.width = canvas.offsetWidth
+    ctx.canvas.height = canvas.offsetHeight
 
-// Initialize the canvas
-function initializeCanvas() {
-canvas = document.getElementById("snowfall");
-context = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-}
+    _.forEach(snowflakes, el => el.resized())
+  }
 
-// Initialize snowflakes
-function initializeSnowflakes() {
-for (var i = 0; i < snowflakeCount; i++) {
-var x = Math.random() * canvas.width;
-var y = Math.random() * canvas.height;
-var size = (Math.random() * 3) + 2;
-var speed = (Math.random() * 1) + 0.5;
-snowflakes.push(new Snowflake(x, y, size, speed));
-}
-}
+  const draw = () => {
+    ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight)
+    _.forEach(snowflakes, el => el.draw())
+  }
+  
+  const events = () => {
+    window.addEventListener('resize', resize)
+  }
 
-// Draw snowflakes
-function drawSnowflakes() {
-context.clearRect(0, 0, canvas.width, canvas.height);
-for (var i = 0; i < snowflakes.length; i++) {
-var snowflake = snowflakes[i];
-context.beginPath();
-context.arc(snowflake.x, snowflake.y, snowflake.size, 0, 2 * Math.PI);
-context.fillStyle = "white";
-context.fill();
-}
+  const loop = () => {
+    draw()
+    update()
+    animFrame(loop)
+  }
+
+  const init = () => {
+    _.times(count, () => add(canvas => SnowItem(canvas, null, options)))
+    events()
+    loop()
+  }
+
+  init(count)
+  resize()
+
+  return { add, resize }
 }
 
-// Update snowflakes
-function updateSnowflakes() {
-for (var i = 0; i < snowflakes.length; i++) {
-var snowflake = snowflakes[i];
-snowflake.y += snowflake.speed;
-if (snowflake.y > canvas.height + snowflake.size) {
-snowflake.y = 0 - snowflake.size;
-snowflake.x = Math.random() * canvas.width;
-}
-}
+const defaultOptions = {
+  color: 'orange',
+  radius: [0.5, 3.0],
+  speed: [1, 3],
+  wind: [-0.5, 3.0]
 }
 
-// Blizzard function
-function startBlizzard() {
-blizzardActive = true;
-snowflakeCount = 500;
-snowflakes = [];
-initializeSnowflakes();
-setInterval(function() {
-updateSnowflakes();
-drawSnowflakes();
-}, 50);
+const SnowItem = (canvas, drawFn = null, opts) => {
+  const options = { ...defaultOptions, ...opts }
+  const { radius, speed, wind, color } = options
+  const params = {
+    color,
+    x: _.random(0, canvas.offsetWidth),
+    y: _.random(-canvas.offsetHeight, 0),
+    radius: _.random(...radius),
+    speed: _.random(...speed),
+    wind: _.random(...wind),
+    isResized: false
+  }
+  const ctx = canvas.getContext('2d')
+  
+  const updateData = () => {
+    params.x = _.random(0, canvas.offsetWidth)
+    params.y = _.random(-canvas.offsetHeight, 0)
+  }
+  
+  const resized = () => params.isResized = true
+
+  const drawDefault = () => {
+    ctx.beginPath()
+    ctx.arc(params.x, params.y, params.radius, 0, 2 * Math.PI)
+    ctx.fillStyle = params.color
+    ctx.fill()
+    ctx.closePath()
+  }
+
+  const draw = drawFn
+    ? () => drawFn(ctx, params)
+    : drawDefault
+
+  const translate = () => {
+    params.y += params.speed
+    params.x += params.wind
+  }
+
+  const onDown = () => {
+    if (params.y < canvas.offsetHeight) return
+
+    if (params.isResized) {
+      updateData()
+      params.isResized = false
+    } else {
+      params.y = 0
+      params.x = _.random(0, canvas.offsetWidth)
+    }
+  }
+
+  const update = () => {
+    translate()
+    onDown()
+  }
+
+  return {
+    update,
+    resized,
+    draw
+  }
 }
 
-// On click event to start blizzard
-document.getElementById("startBtn").addEventListener("click", startBlizzard);
-// code for startBlizzard function
-function startBlizzard() {
-  console.log("Blizzard started!");
-  // additional code to execute when start button is clicked
-}
+const el = document.querySelector('.container')
+const wrapper = document.querySelector('body')
+const canvas = document.getElementById('snow')
 
-// code to add more event listeners for other buttons, if needed
-document.getElementById("stopBtn").addEventListener("click", stopBlizzard);
+const animFrame = window.requestAnimationFrame ||
+                  window.mozRequestAnimationFrame ||
+                  window.webkitRequestAnimationFrame ||
+                  window.msRequestAnimationFrame
 
-// code for stopBlizzard function
-function stopBlizzard() {
-  console.log("Blizzard stopped!");
-  // additional code to execute when stop button is clicked
-}
-
+Snow(canvas, 150, { color: 'white' })

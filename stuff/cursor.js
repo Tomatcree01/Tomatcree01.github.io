@@ -8,11 +8,11 @@ const cursorTextContainerEl = document.querySelector(".cursor--text");
 const cursorTextEl = cursorTextContainerEl.querySelector(".text");
 
 const hoverItems = document.querySelectorAll(".cursor-hover-item");
-const hoverEffectDuration = 0.3;
+const hoverEffectDuration = 0.36;
 let isHovered = false;
 let initialCursorHeight;
 
-const cursorRotationDuration = 8;
+const cursorRotationDuration = 7;
 
 let circleType = new CircleType(cursorTextEl);
 circleType.radius(50);
@@ -29,8 +29,27 @@ hoverItems.forEach((item) => {
 
 let mouse = {
 	x: -100,
-	y: -100
+	y: -100,
 };
+
+document.body.addEventListener("mousedown", (e) => {
+	gsap.to(cursorInner, hoverEffectDuration, {
+	  scale: 2.5
+	});
+	gsap.to(cursorOuter, hoverEffectDuration, {
+	  scale: 0.4
+	});
+  });
+  
+  document.body.addEventListener("mouseup", (e) => {
+	gsap.to(cursorInner, hoverEffectDuration, {
+	  scale: 1
+	});
+	gsap.to(cursorOuter, hoverEffectDuration, {
+	  scale: 1.2
+	});
+  });
+  
 
 document.body.addEventListener("pointermove", updateCursorPosition);
 
@@ -46,7 +65,7 @@ function updateCursor() {
 	});
 
 	gsap.to(cursorOuter, {
-		duration: 0.15,
+		duration: 0.032,
 		x: mouse.x,
 		y: mouse.y
 	});
@@ -107,10 +126,16 @@ function handlePointerEnter(e) {
 		}
 	);
 	gsap.to(cursorOuter, hoverEffectDuration, {
-		scale: 1.2,
+		scale: 2.0,
 		opacity: 0
 	});
 }
+
+  
+hoverItems.forEach((item) => {
+item.addEventListener("click", handleClick);
+item.addEventListener("pointerleave", handlePointerLeave);
+});
 
 function handlePointerLeave() {
 	isHovered = false;
@@ -139,4 +164,4 @@ function returnMultipleString(string, count) {
 		s += ` ${string} `;
 	}
 	return s;
-}
+}  

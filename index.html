@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link href="stuff/style.css" rel="stylesheet">
+    <link href="stuff/style.scss" rel="stylesheet">
     <meta charset="UTF-8"><!--
   _____                               _                                    
  |_   _|   ___    _ __ ___     __ _  | |_    ___   _ __    ___    ___ 
@@ -19,7 +19,7 @@
     <link rel="icon" href="https://m.media-amazon.com/images/I/51hbl5f9OrL._AC_SY350_QL15_.jpg">
   </head>
   <body>
-    <div id="clock" style="position: fixed; top: 5%; left: 50%; transform: translate(-50%, 0); font-size: 60px;   -webkit-text-stroke:3px rgb(152, 152, 152);   -webkit-text-fill-color:transparent;"></div>
+    <div id="clock" style="position: fixed; top: 5%; left: 50%; transform: translate(-50%, 0); font-size: 60px;   -webkit-text-stroke:3px rgb(255, 255, 255);   -webkit-text-fill-color:transparent;"></div>
 <script>
 // Get the clock container
 var clock = document.getElementById("clock");
@@ -40,8 +40,8 @@ function displayTime() {
   clock.innerHTML = hours + ":" + minutes + ":" + seconds;
 }
 
-// Call the displayTime function every 999 ms lol just bcuz
-setInterval(displayTime, 999);
+// Call the displayTime function every 99 ms lol just bcuz
+setInterval(displayTime, 99);
 </script>
 
     <main>
@@ -74,7 +74,6 @@ setInterval(displayTime, 999);
     <div class="cursor--text">
       <div class="text">GO HERE! GO HERE! GO HERE! GO HERE! </div>
     </div>
-  </div>
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js" type="text/javascript"></script>
   <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js" type="text/javascript"></script>
