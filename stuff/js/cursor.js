@@ -8,7 +8,7 @@ const cursorTextContainerEl = document.querySelector(".cursor--text");
 const cursorTextEl = cursorTextContainerEl.querySelector(".text");
 
 const hoverItems = document.querySelectorAll(".cursor-hover-item");
-const hoverEffectDuration = 0.36;
+const hoverEffectDuration = 0.3;
 let isHovered = false;
 let initialCursorHeight;
 
