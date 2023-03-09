@@ -18,10 +18,10 @@
     <link rel="icon" href="https://m.media-amazon.com/images/I/51hbl5f9OrL._AC_SY350_QL15_.jpg">
   </head>
   <body>
-    <div id="clock" style="position: fixed; top: 5%; left: 50%; transform: translate(-50%, 0); font-size: 60px;   -webkit-text-stroke:3px rgb(255, 255, 255);   -webkit-text-fill-color:transparent;  mix-blend-mode: soft-light;"></div>
+    <div class="clock" style="position: fixed; top: 5%; left: 50%; transform: translate(-50%, 0); font-size: 60px;   -webkit-text-stroke:3px rgb(255, 255, 255);   -webkit-text-fill-color:transparent;  mix-blend-mode: soft-light;"></div>
 <script>
 // Get the clock container
-var clock = document.getElementById("clock");
+var clock = document.querySelector(".clock");
 // Function to display the time in 12-hour format
 function displayTime() {
   // Get the current time
@@ -78,6 +78,8 @@ setInterval(displayTime, 1);
   <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js" type="text/javascript"></script>
   <script src="stuff/js/howler.js"></script>
+  <script src="stuff/js/cursor.js" type="text/javascript"></script>
+  <script src="stuff/js/discord-copy.js" type="text/javascript"></script>
     <script>
       var sound = new Howl({
         src: ['stuff/sound.mp3'],
@@ -87,8 +89,5 @@ setInterval(displayTime, 1);
         autoplayOn: [15000, 90000]
       });
      </script>
-    <script src="stuff/js/cursor.js" type="text/javascript"></script>
-    <script src="stuff/js/discord-copy.js" type="text/javascript"></script>
-    <script src="stuff/js/snow.js" type="text/javascript"></script>
   </body>
 </html>

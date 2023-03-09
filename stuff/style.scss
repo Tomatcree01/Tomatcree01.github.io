@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   cursor: none;
-  user-select: none;
   -webkit-user-drag: none; }
 
   body {
@@ -121,8 +120,8 @@ main .socials .social.discord {
 .cursor .cursor--text {
   --cursor-size: fit-content;
   font-size: 0.8rem;
-  color: #1c0e0e;
-  opacity: 0; }
+  color: #596a81de;
+}
 
 .cursor .cursor--text .text {
   font-family: sans-serif;

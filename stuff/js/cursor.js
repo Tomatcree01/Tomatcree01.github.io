@@ -4,6 +4,7 @@ const { gsap, CircleType } = window;
 
 const cursorOuter = document.querySelector(".cursor--large");
 const cursorInner = document.querySelector(".cursor--small");
+const clock = document.querySelector(".clock");
 const cursorTextContainerEl = document.querySelector(".cursor--text");
 const cursorTextEl = cursorTextContainerEl.querySelector(".text");
 
@@ -32,23 +33,40 @@ let mouse = {
 	y: -100,
 };
 
-document.body.addEventListener("mousedown", (e) => {
-	gsap.to(cursorInner, hoverEffectDuration, {
-	  scale: 2.5
-	});
-	gsap.to(cursorOuter, hoverEffectDuration, {
-	  scale: 0.4
-	});
+
+//double click and single click
+	document.body.addEventListener("mousedown", (e) => {
+	if(e.detail === 2) { // check if it was a double-click event or single-click event
+	   gsap.to(cursorInner, hoverEffectDuration, {
+		 scale: 10.4   // set inner cursor scale to 0.4
+	   });
+	   gsap.to(cursorOuter, hoverEffectDuration, {
+		 scale: 0.3    // set outer cursor scale to 1
+	   });
+	   gsap.to(clock, {
+		duration: 1,      // set the duration of the animation to 1 second
+		rotation: "+=45", // rotate the div clockwise by 45 degrees
+		ease: "none"      // use a linear easing function
+	  });
+	} else { // otherwise, execute single click event
+	   gsap.to(cursorInner, hoverEffectDuration, {
+		scale: 3.5
+	   });
+	   gsap.to(cursorOuter, hoverEffectDuration, { 
+		 scale: 0.4 
+	   });
+	}
   });
   
   document.body.addEventListener("mouseup", (e) => {
-	gsap.to(cursorInner, hoverEffectDuration, {
-	  scale: 1
+	gsap.to(cursorInner, hoverEffectDuration, { 
+	  scale: 1 
 	});
-	gsap.to(cursorOuter, hoverEffectDuration, {
+	gsap.to(cursorOuter, hoverEffectDuration, { 
 	  scale: 1.2
 	});
   });
+  
   
 
 document.body.addEventListener("pointermove", updateCursorPosition);
@@ -65,7 +83,7 @@ function updateCursor() {
 	});
 
 	gsap.to(cursorOuter, {
-		duration: 0.032,
+		duration: 0.029,
 		x: mouse.x,
 		y: mouse.y
 	});
