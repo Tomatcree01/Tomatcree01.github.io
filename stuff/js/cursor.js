@@ -4,7 +4,6 @@ const { gsap, CircleType } = window;
 
 const cursorOuter = document.querySelector(".cursor--large");
 const cursorInner = document.querySelector(".cursor--small");
-//const clock = document.querySelector(".clock");
 const cursorTextContainerEl = document.querySelector(".cursor--text");
 const cursorTextEl = cursorTextContainerEl.querySelector(".text");
 
@@ -43,11 +42,6 @@ let mouse = {
 	   gsap.to(cursorOuter, hoverEffectDuration, {
 		 scale: 0.3    // set outer cursor scale to 1
 	   });
-	  /* gsap.to(clock, {
-		duration: 1,      // set the duration of the animation to 1 second
-		rotation: "+=45", // rotate the div clockwise by 45 degrees
-		ease: "none"      // use a linear easing function
-	  });*/
 	} else { // otherwise, execute single click event
 	   gsap.to(cursorInner, hoverEffectDuration, {
 		scale: 3.5
