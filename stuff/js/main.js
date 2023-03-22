@@ -1,4 +1,5 @@
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
+  //--------------------------Sound stuff--------------------------------------
   // Creating a new Howler object
   var sound = new Howl({
     src: ['/stuff/click.mp3'],
@@ -6,19 +7,15 @@ window.onload = function () {
   });
 
   const notification = document.querySelector('#clipboard-notification');
-  const bar = document.querySelector(".bar");
   const discordSocial = document.querySelector(".social.discord");
-
   discordSocial.addEventListener("click", function () {
     const tag = 'kallosus16(2)#6138';
 
     navigator.clipboard.writeText(tag)
       .then(() => {
         notification.style.display = 'block';
-        bar.style.display = 'block';
         setTimeout(() => {
           notification.style.display = 'none';
-          bar.style.display = 'none';
         }, 3000);
       })
       .catch(console.error);
@@ -26,6 +23,16 @@ window.onload = function () {
     // Playing the sound
     sound.play();
   });
+
+  var sound = new Howl({
+    src: ['stuff/sound.mp3'],
+    loop: true,
+    volume: 0.1,
+    autoplay: true,
+    autoplayOn: [15000, 90000]
+  });
+
+  //-------------------------MISC functions---------------------------------------
 
 
   // Get the clock container
@@ -48,4 +55,4 @@ window.onload = function () {
   }
   // Call the displayTime function every 1 ms lol just bcuz
   setInterval(displayTime, 1);
-}
+});

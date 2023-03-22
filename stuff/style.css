@@ -2,7 +2,9 @@
   box-sizing: border-box;
   margin: 0;
   cursor: none;
-  -webkit-user-drag: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 body {
@@ -31,28 +33,17 @@ body {
   animation: fadeIn 1.6s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    font-size: 70px;
-  }
-  to {
-    opacity: 1;
-  }
-}
 main {
   height: 190px;
   width: 200px;
   display: grid;
   grid-template-rows: repeat(20, 1fr);
 }
-
 main .links {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 main .links .link {
   --color: rgba(0, 0, 0, 0.719);
   position: relative;
@@ -63,7 +54,6 @@ main .links .link {
   cursor: none;
   transition: color 269ms ease-in-out;
 }
-
 main .links .link::after {
   content: "";
   position: absolute;
@@ -76,22 +66,18 @@ main .links .link::after {
   transform: scaleX(0);
   transition: transform 899ms ease;
 }
-
 main .links .link:hover {
   --color: rgb(0, 0, 0);
 }
-
 main .links .link:hover::after {
   transform-origin: right;
   transform: scaleX(1);
 }
-
 main .socials {
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
-
 main .socials .social {
   --icon-size: 38px;
   width: var(--icon-size);
@@ -104,21 +90,51 @@ main .socials .social {
   color: #fff;
   background: var(--bg);
 }
-
 main .socials .social.github {
   --bg: #000;
 }
-
 main .socials .social.youtube {
   --bg: #c4302b;
 }
-
 main .socials .social.discord {
   --bg: rgb(33, 69, 249);
 }
 
-.cursor .cursor--small,
-.cursor .cursor--large,
+.cursor .cursor--small {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  --cursor-size: 12px;
+  transition: all 0.1s ease-out;
+  background: #c7e0ff;
+}
+.cursor .cursor--large {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  --cursor-size: 45px;
+  border-radius: 16px;
+  transition: all 0.2s ease-out;
+  border: 1.3px solid #ffffff;
+}
 .cursor .cursor--text {
   position: fixed;
   left: 0;
@@ -132,30 +148,13 @@ main .socials .social.discord {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-
-.cursor .cursor--text {
   --cursor-size: fit-content;
   font-size: 0.8rem;
   color: rgba(89, 106, 129, 0.8705882353);
 }
-
 .cursor .cursor--text .text {
   font-family: sans-serif;
   font-weight: bold;
-}
-
-.cursor .cursor--small {
-  --cursor-size: 12px;
-  transition: all 0.1s ease-out;
-  background: #c7e0ff;
-}
-
-.cursor .cursor--large {
-  --cursor-size: 45px;
-  border-radius: 16px;
-  transition: all 0.2s ease-out;
-  border: 1.3px solid #ffffff;
 }
 
 .clipboard-notification {
@@ -170,6 +169,19 @@ main .socials .social.discord {
   animation: notification-fade-in 0.5s, notification-fade-out 0.5s 3s;
 }
 
+.change-color {
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    font-size: 70px;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes notification-fade-in {
   from {
     opacity: 0;
@@ -186,14 +198,6 @@ main .socials .social.discord {
     opacity: 0;
   }
 }
-.bar {
-  display: none;
-  top: 10px;
-  right: 10px;
-  background-color: #25bb12;
-  animation: countdown 3s linear forwards;
-}
-
 @keyframes notification-fade-in {
   from {
     opacity: 0;
@@ -221,7 +225,4 @@ main .socials .social.discord {
   to {
     width: 0;
   }
-}
-.change-color {
-  color: #fff;
 }/*# sourceMappingURL=style.css.map */

@@ -4,7 +4,6 @@ const { gsap, CircleType } = window;
 
 const cursorOuter = document.querySelector(".cursor--large");
 const cursorInner = document.querySelector(".cursor--small");
-const clock = document.querySelector(".clock");
 const cursorTextContainerEl = document.querySelector(".cursor--text");
 const cursorTextEl = cursorTextContainerEl.querySelector(".text");
 
@@ -44,13 +43,6 @@ document.body.addEventListener("mousedown", (e) => {
 			scale: 0.3    // set outer cursor scale to 1
 		});
 		let rotateInterval;
-
-		// Add event listeners for when the user presses and releases a button
-		document.addEventListener('mousedown', function (event) {
-			if (event.code === 'click') { // replace 'Space' with the desired button key code
-				rotateInterval = setInterval(rotateElement, 10); // replace 10 with the desired rotation speed
-			}
-		});
 
 		document.addEventListener('mouseup', function (event) {
 			if (event.code === 'click') {
@@ -168,7 +160,6 @@ function handlePointerEnter(e) {
 
 
 hoverItems.forEach((item) => {
-	item.addEventListener("click", handleClick);
 	item.addEventListener("pointerleave", handlePointerLeave);
 });
 
