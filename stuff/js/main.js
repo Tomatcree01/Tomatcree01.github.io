@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   //--------------------------Sound stuff--------------------------------------
-  // Creating a new Howler object
-  var sound = new Howl({
-    src: ['/stuff/click.mp3'],
-    volume: 0.8
+  var click = new Howl({
+    src: ['stuff/click.mp3'],
+    volume: 0.6
   });
 
   const notification = document.querySelector('#clipboard-notification');
@@ -12,16 +11,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const tag = 'kallosus16(2)#6138';
 
     navigator.clipboard.writeText(tag)
-      .then(() => {
-        notification.style.display = 'block';
-        setTimeout(() => {
-          notification.style.display = 'none';
-        }, 3000);
-      })
+    .then(() => {
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.animation = 'notification-fade-out 0.5s ease-in-out forwards';
+      }, 5000);
+    })
       .catch(console.error);
 
     // Playing the sound
-    sound.play();
+    click.play();
   });
 
   var sound = new Howl({
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     autoplay: true,
     autoplayOn: [15000, 90000]
   });
-
   //-------------------------MISC functions---------------------------------------
 
 

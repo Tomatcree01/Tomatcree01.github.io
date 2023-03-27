@@ -17,7 +17,6 @@ body {
   font-family: "Secular One", sans-serif;
   font-weight: bold;
   color: #0b52af;
-  height: 1594px;
   overscroll-behavior: none;
   scroll-behavior: smooth;
   width: 100%;
@@ -66,7 +65,7 @@ main .links .link::after {
   background: #4394f7;
   transform-origin: right;
   transform: scaleX(0);
-  transition: transform 899ms ease;
+  transition: transform 999ms ease;
 }
 main .links .link:hover {
   --color: rgb(0, 0, 0);
@@ -87,19 +86,19 @@ main .socials .social {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.6rem;
+  border-radius: 0.7rem;
   margin: 1.1rem;
   color: #fff;
   background: var(--bg);
 }
 main .socials .social.github {
-  --bg: #000;
+  --bg: #010101;
 }
 main .socials .social.youtube {
-  --bg: #c4302b;
+  --bg: #ce201f;
 }
 main .socials .social.discord {
-  --bg: rgb(33, 69, 249);
+  --bg: #5865f2;
 }
 
 .cursor .cursor--small {
@@ -159,20 +158,21 @@ main .socials .social.discord {
   font-weight: bold;
 }
 
+.change-color {
+  color: #fff;
+}
+
 .clipboard-notification {
   display: none;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.7%;
+  right: 2%;
   background-color: #082143;
   color: #fff;
   padding: 9px 15px;
   border-radius: 10px;
-  animation: notification-fade-in 0.5s, notification-fade-out 0.5s 3s;
-}
-
-.change-color {
-  color: #fff;
+  animation: notification-fade-in 0.5s ease-in-out forwards, notification-fade-out 0.4s ease-in-out 3.8s forwards;
+  opacity: 0;
 }
 
 @keyframes fadeIn {
@@ -185,46 +185,21 @@ main .socials .social.discord {
   }
 }
 @keyframes notification-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes notification-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes notification-fade-in {
-  from {
+  0% {
     opacity: 0;
     transform: translateY(-20px);
   }
-  to {
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(15px);
   }
 }
 @keyframes notification-fade-out {
-  from {
+  50% {
     opacity: 1;
-    transform: translateY(0);
   }
-  to {
+  100% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-100%);
   }
 }
-@keyframes countdown {
-  from {
-    width: 100%;
-  }
-  to {
-    width: 0;
-  }
-}/*# sourceMappingURL=style.css.map */
