@@ -92,7 +92,7 @@ function updateCursor() {
 	});
 
 	gsap.to(cursorOuter, {
-		duration: 0.029,
+		duration: 0.023,
 		x: mouse.x,
 		y: mouse.y
 	});
@@ -129,7 +129,7 @@ function handlePointerEnter(e) {
 		},
 		{
 			duration: cursorRotationDuration,
-			rotate: 360,
+			rotate: 320,
 			ease: "none",
 			repeat: -1
 		}

@@ -1,2 +1,2 @@
-# tomatcree.github.io
-My website
+# tomatcree.github.io/tomatcree.works
+My first website ;)

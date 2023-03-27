@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+
 $color_1: #0b52af;
 $color_2: var(--color);
 $color_3: #fff;
 $color_4: #596a81de;
-$font-family_1: "Segoe UI", sans-serif;
-$font-family_2: "Sainte Colombe, ";
+$font-family_1: 'Secular One', sans-serif;
+$font-family_2: 'Maven Pro';
 $font-family_3: sans-serif;
 $background-color_1: #082143;
 
@@ -17,7 +21,7 @@ $background-color_1: #082143;
 }
 
 body {
-  background-image: url("/stuff/photo-1464822759023-fed622ff2c3b.avif");
+  background-image: url("photo-1464822759023-fed622ff2c3b.avif");
   //backdrop-filter: blur(3px);
   background-size: cover;
   text-align: left;
@@ -148,10 +152,10 @@ main {
     mix-blend-mode: difference;
     pointer-events: none;
     user-select: none;
-    --cursor-size: 45px;
-    border-radius: 16px;
+    --cursor-size: 43px;
+    border-radius: 15px;
     transition: all 0.2s ease-out;
-    border: 1.3px solid #ffffff;
+    border: 1.2px solid #ffffff;
   }
 
   .cursor--text {

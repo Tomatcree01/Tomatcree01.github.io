@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,11 +10,11 @@
 }
 
 body {
-  background-image: url("/stuff/photo-1464822759023-fed622ff2c3b.avif");
+  background-image: url("photo-1464822759023-fed622ff2c3b.avif");
   background-size: cover;
   text-align: left;
   font-size: 26px;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Secular One", sans-serif;
   font-weight: bold;
   color: #0b52af;
   height: 1594px;
@@ -48,7 +50,7 @@ main .links .link {
   --color: rgba(0, 0, 0, 0.719);
   position: relative;
   font-size: 0.85rem;
-  font-family: "Sainte Colombe, ";
+  font-family: "Maven Pro";
   text-decoration: none;
   color: var(--color);
   cursor: none;
@@ -130,10 +132,10 @@ main .socials .social.discord {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  --cursor-size: 45px;
-  border-radius: 16px;
+  --cursor-size: 43px;
+  border-radius: 15px;
   transition: all 0.2s ease-out;
-  border: 1.3px solid #ffffff;
+  border: 1.2px solid #ffffff;
 }
 .cursor .cursor--text {
   position: fixed;
