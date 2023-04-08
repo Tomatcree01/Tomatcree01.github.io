@@ -2,8 +2,8 @@ console.clear();
 
 const { gsap, CircleType } = window;
 
-const cursorOuter = document.querySelector(".cursor--large");
-const cursorInner = document.querySelector(".cursor--small");
+const cursorOuter = $(".cursor--large");
+const cursorInner = $(".cursor--small");
 const cursorTextContainerEl = document.querySelector(".cursor--text");
 const cursorTextEl = cursorTextContainerEl.querySelector(".text");
 
@@ -78,7 +78,7 @@ document.body.addEventListener("mouseup", (e) => {
 
 
 
-document.body.addEventListener("pointermove", updateCursorPosition);
+$("body").on("pointermove", updateCursorPosition);
 
 function updateCursorPosition(e) {
 	mouse.x = e.pageX;
@@ -160,7 +160,7 @@ function handlePointerEnter(e) {
 
 
 hoverItems.forEach((item) => {
-	item.addEventListener("pointerleave", handlePointerLeave);
+	$(item).on("pointerleave", handlePointerLeave);
 });
 
 function handlePointerLeave() {
@@ -172,10 +172,10 @@ function handlePointerLeave() {
 }
 
 function updateCursorText(textEl) {
-	const cursorTextRepeatTimes = textEl.getAttribute("data-cursor-text-repeat");
+	const cursorTextRepeatTimes = $(textEl).attr("data-cursor-text-repeat");
 	const cursorText = returnMultipleString(
-		textEl.getAttribute("data-cursor-text"),
-		cursorTextRepeatTimes
+		$(textEl).attr("data-cursor-text"),
+		parseInt(cursorTextRepeatTimes)	
 	);
 
 	circleType.destroy();
