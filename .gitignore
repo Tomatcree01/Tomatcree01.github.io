@@ -3,3 +3,4 @@ public/
 src/
 yarn.lock
 package.json
+.DS_Store
