@@ -1,294 +1,447 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Tone (eOscillator)</title>
-  </head>
-  <style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Flowy Tone Generator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/duyplus/fontawesome-pro/css/all.min.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #feca57;
+        --background-color: #2c3e50;
+        --container-bg: rgba(44, 62, 80, 0.7);
+        --button-bg: #34495e;
+        --glow-color: #ff6b6b;
+    }
+
     body {
-      font-family: sans-serif;
-      background-color: rgb(49, 55, 66);
+        font-family: 'Press Start 2P', cursive;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientFlow 15s ease infinite;
+        color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .container {
+        background-color: var(--container-bg);
+        border: 3px solid var(--primary-color);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 0 20px var(--glow-color);
+        max-width: 800px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+    }
+
+    .container:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 30px var(--glow-color);
     }
 
     h1 {
-      color: #000000;
-      animation: glitch 1s linear infinite;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+        position: relative;
+        color: var(--primary-color);
+        text-shadow: 0 0 10px var(--glow-color);
+        transition: all 0.3s ease;
     }
 
-    @keyframes glitch {
-      0% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
+    h1:hover {
+        transform: scale(1.1);
+        text-shadow: 0 0 20px var(--glow-color);
+    }
 
-      20% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #3f51b5;
-      }
-
-      40% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #3f51b5, 0 0 60px #f44336;
-      }
-
-      60% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #3f51b5, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
-
-      80% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #3f51b5,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
-
-      100% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #3f51b5, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
+    .control-group {
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
     }
 
     label {
-      font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+        text-shadow: 0 0 5px var(--glow-color);
+        transition: all 0.3s ease;
+    }
+
+    label:hover {
+        transform: translateX(5px);
     }
 
     input[type="range"] {
-      width: 80%;
-      height: 5px;
-      margin: 10px;
-      background: #3f51b5;
-      outline: none;
-      border-radius: 5px;
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        background: #34495e;
+        outline: none;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        border-radius: 15px;
+        height: 10px;
     }
 
-    #frequency-display,
-    #volume-display {
-      display: inline-block;
-      margin-left: 10px;
-      color: #3f51b5;
-      font-weight: bold;
+    input[type="range"]:hover {
+        opacity: 1;
     }
 
-    #play,
-    #stop {
-      padding: 10px;
-      margin: 10px;
-      background: #3f51b5;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: var(--primary-color);
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--glow-color);
+        transition: all 0.3s ease;
     }
 
-    h1 {
-      color: #3f51b5;
-      animation: glitch 1s linear infinite;
+    input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 15px var(--glow-color);
     }
 
-    @keyframes glitch {
-      0% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
-
-      20% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #3f51b5;
-      }
-
-      40% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #3f51b5, 0 0 60px #f44336;
-      }
-
-      60% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #f44336,
-          0 0 40px #3f51b5, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
-
-      80% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #f44336, 0 0 30px #3f51b5,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
-
-      100% {
-        text-shadow: 0 0 10px #f44336, 0 0 20px #3f51b5, 0 0 30px #f44336,
-          0 0 40px #f44336, 0 0 50px #f44336, 0 0 60px #f44336;
-      }
+    .display {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 10px;
+        background-color: var(--background-color);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid var(--primary-color);
+        box-shadow: 0 0 10px var(--glow-color);
+        transition: all 0.3s ease;
     }
 
-    #play:active {
-      background: #3f51b5;
-      box-shadow: 0 0 5px 2px #3f51b5;
-      transform: translateY(2px);
+    .display:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px var(--glow-color);
     }
 
-    #play:hover {
-      background: #f44336;
-      box-shadow: 0 0 10px 2px #f44336;
-      transform: scale(1.1);
+    .waveform-group, .effects-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
     }
 
-    #stop:hover {
-      background: #f44336;
-      box-shadow: 0 0 10px 2px #f44336;
-      transform: scale(1.1);
+    .waveform-btn, .effect-btn {
+        background-color: var(--button-bg);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        padding: 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+        flex: 1;
+        margin: 0 5px;
+        position: relative;
+        overflow: hidden;
     }
 
-    #waveform-selector:hover {
-      background: #f44336;
-      color: white;
-      cursor: pointer;
+    .waveform-btn:hover, .effect-btn:hover {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+        box-shadow: 0 0 15px var(--glow-color);
+        transform: translateY(-3px);
     }
 
-    #waveform-selector:focus {
-      outline: none;
+    .waveform-btn.active, .effect-btn.active {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+        box-shadow: 0 0 15px var(--glow-color);
     }
 
-    #waveform-selector option:hover {
-      background: #3f51b5;
-      color: white;
+    .control-btn {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-right: 10px;
+        position: relative;
+        overflow: hidden;
     }
 
-    #waveform-canvas:hover {
-      box-shadow: 0 0 10px 2px #f44336;
+    .control-btn:hover {
+        background-color: var(--secondary-color);
+        box-shadow: 0 0 20px var(--secondary-color);
+        transform: translateY(-3px);
     }
 
-    #waveform-selector {
-      margin-top: 20px;
+    #visualizer {
+        width: 100%;
+        height: 150px;
+        background-color: var(--background-color);
+        margin-top: 20px;
+        border: 1px solid var(--primary-color);
+        box-shadow: 0 0 10px var(--glow-color);
+        transition: all 0.3s ease;
     }
 
-    #waveform-canvas {
-      width: 80%;
-      height: 100px;
-      margin-top: 20px;
-      background-color: #ddd;
+    #visualizer:hover {
+        box-shadow: 0 0 20px var(--glow-color);
+        transform: scale(1.02);
     }
 
-    /*# sourceMappingURL=sstyle.css.map */
-  </style>
-
-  <body>
-    <h1>Tone thingy</h1>
-    <label for="frequency">Frequency:</label>
-    <input
-      type="range"
-      id="frequency"
-      name="frequency"
-      min="-10000"
-      max="25000"
-      step="60"
-      value="440"
-    />
-    <div id="frequency-display">1 - 25000 Hz</div>
-    <br />
-    <label for="volume">Volume:</label>
-    <input
-      type="range"
-      id="volume"
-      name="volume"
-      min="0"
-      max="1"
-      step="0.1"
-      value="0.5"
-    />
-    <div id="volume-display">50%</div>
-    <br />
-    <label for="waveform">Waveform:</label>
-    <select id="waveform-selector">
-      <option value="sine">Sine</option>
-      <option value="square">Square</option>
-      <option value="sawtooth">Sawtooth</option>
-      <option value="triangle">Triangle</option>
-    </select>
-    <canvas id="waveform-canvas"></canvas>
-    <br />
-    <button id="play">Play</button>
-    <button id="stop">Stop</button>
+    @keyframes gradientFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+</style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-blur"></div>
+    <div class="container">
+        <h1 data-text="Retro Tone Generator">Retro Tone Generator</h1>
+        
+        <div class="control-group">
+            <label for="frequency"><i class="fa-solid fa-wave-square"></i>  Frequency:</label>
+            <input type="range" id="frequency" min="20" max="20000" step="1" value="440">
+            <div id="frequency-display" class="display neon-text">440 Hz</div>
+        </div>
+        
+        <div class="control-group">
+            <label for="volume"><i class="fas fa-volume-up icon"></i>  Volume:</label>
+            <input type="range" id="volume" min="0" max="100" step="1" value="50">
+            <div id="volume-display" class="display neon-text">50%</div>
+        </div>
+        
+        <div class="waveform-group">
+            <button class="waveform-btn active" data-waveform="sine"><i class="fa-solid fa-wave-sine"></i></i> Sine</button>
+            <button class="waveform-btn" data-waveform="square"><i class="fa-solid fa-wave-square"></i> Square</button>
+            <button class="waveform-btn" data-waveform="sawtooth"><i class="fa-solid fa-light fa-tooth"></i> Sawtooth</button>
+            <button class="waveform-btn" data-waveform="triangle"><i class="fa-solid fa-wave-triangle"></i> Triangle</button>
+        </div>
+        
+        <div>
+            <button id="play" class="control-btn"><i class="fas fa-play icon"></i>Play</button>
+            <button id="stop" class="control-btn"><i class="fas fa-stop icon"></i>Stop</button>
+        </div>
+        
+        <canvas id="visualizer"></canvas>
+        
+        <div class="effects-group">
+            <button class="effect-btn" data-effect="tremolo"><i class="fas fa-water icon"></i>Tremolo</button>
+            <button class="effect-btn" data-effect="chorus"><i class="fas fa-clone icon"></i>Chorus</button>
+            <button class="effect-btn" data-effect="reverb"><i class="fas fa-broadcast-tower icon"></i>Reverb</button>
+        </div>
+    </div>
 
     <script>
-      var audioContext = new (window.AudioContext ||
-        window.webkitAudioContext)();
-      var oscillator = 0;
-      var volume = audioContext.createGain();
-      var frequencyInput = document.getElementById("frequency");
-      var volumeInput = document.getElementById("volume");
-      var waveformSelect = document.getElementById("waveform-selector");
-      var playButton = document.getElementById("play");
-      var stopButton = document.getElementById("stop");
-      var frequencyDisplay = document.getElementById("frequency-display");
-      var volumeDisplay = document.getElementById("volume-display");
-      var canvas = document.getElementById("waveform-canvas");
-      var canvasContext = canvas.getContext("2d");
-      var canvasWidth = canvas.width;
-      var canvasHeight = canvas.height;
+        let audioContext;
+        let oscillator;
+        let gainNode;
+        let analyser;
+        let isPlaying = false;
+        let currentWaveform = 'sine';
+        //need to link other nodes for chorus
+        let tremoloNode, vibratoOsc, reverbNode;
 
-      // Update frequency when the frequency input is changed
-      frequencyInput.addEventListener("input", function () {
-        if (oscillator) {
-          oscillator.frequency.value = parseInt(this.value);
+        const frequencySlider = document.getElementById('frequency');
+        const volumeSlider = document.getElementById('volume');
+        const frequencyDisplay = document.getElementById('frequency-display');
+        const volumeDisplay = document.getElementById('volume-display');
+        const playButton = document.getElementById('play');
+        const stopButton = document.getElementById('stop');
+        const waveformButtons = document.querySelectorAll('.waveform-btn');
+        const effectButtons = document.querySelectorAll('.effect-btn');
+        const visualizer = document.getElementById('visualizer');
+        const visualizerContext = visualizer.getContext('2d');
+
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            oscillator = audioContext.createOscillator();
+            gainNode = audioContext.createGain();
+            analyser = audioContext.createAnalyser();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(audioContext.destination);
+
+            oscillator.type = currentWaveform;
+            oscillator.frequency.setValueAtTime(frequencySlider.value, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(volumeSlider.value / 100, audioContext.currentTime);
+
+            //must fix this
+            tremoloNode = audioContext.createGain();
+            vibratoOsc = audioContext.createOscillator();
+            reverbNode = audioContext.createWaveShaper();
         }
-        frequencyDisplay.innerText = this.value + " Hz";
-      });
 
-      // Update volume when the volume input is changed
-      volumeInput.addEventListener("input", function () {
-        volume.gain.value = parseFloat(this.value);
-        var percent = parseInt(parseFloat(this.value) * 100);
-        volumeDisplay.innerText = percent + `%`;
-      });
-
-      // Update waveform when the waveform selector is changed
-      waveformSelect.addEventListener("change", function () {
-        if (oscillator) {
-          oscillator.type = waveformSelect.value;
+        function startTone() {
+            if (!isPlaying) {
+                initAudio();
+                oscillator.start();
+                isPlaying = true;
+                visualize();
+            }
         }
-      });
 
-      // Draw waveform visualization
-      function drawWaveform() {
-        canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-        canvasContext.beginPath();
-        canvasContext.moveTo(0, canvasHeight / 2);
-        for (var i = 0; i < canvasWidth; i++) {
-          var t = i / canvasWidth;
-          var value =
-            oscillator.type === "sine"
-              ? Math.sin(t * 2 * Math.PI)
-              : oscillator.type === "square"
-              ? Math.sign(Math.sin(t * 2 * Math.PI))
-              : oscillator.type === "sawtooth"
-              ? -1 + 2 * t
-              : oscillator.type === "triangle"
-              ? Math.abs(-1 + 2 * t) * 2 - 1
-              : 0;
-          canvasContext.lineTo(i, ((1 - value) * canvasHeight) / 2);
+        function stopTone() {
+            if (isPlaying) {
+                oscillator.stop();
+                isPlaying = false;
+            }
         }
-        canvasContext.lineWidth = 2;
-        canvasContext.strokeStyle = "#f44336";
-        canvasContext.stroke();
-      }
 
-      // Play the oscillator when the play button is clicked
-      playButton.addEventListener("click", function () {
-        if (!oscillator) {
-          oscillator = audioContext.createOscillator();
-          oscillator.type = waveformSelect.value;
-          oscillator.frequency.value = parseInt(frequencyInput.value);
-          oscillator.connect(volume);
-          volume.connect(audioContext.destination);
-          oscillator.start();
-          setInterval(drawWaveform, 10);
+        function updateFrequency() {
+            const frequency = frequencySlider.value;
+            frequencyDisplay.textContent = `${frequency} Hz`;
+            if (isPlaying) {
+                oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            }
         }
-      });
 
-      // Stop the oscillator when the stop button is clicked
-      stopButton.addEventListener("click", function () {
-        if (oscillator) {
-          oscillator.stop();
-          oscillator = 0;
-          canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+        function updateVolume() {
+            const volume = volumeSlider.value;
+            volumeDisplay.textContent = `${volume}%`;
+            if (isPlaying) {
+                gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
+            }
         }
-      });
+
+        function changeWaveform(event) {
+            const waveform = event.target.dataset.waveform;
+            currentWaveform = waveform;
+            waveformButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            if (isPlaying) {
+                oscillator.type = waveform;
+            }
+        }
+
+        function toggleEffect(event) {
+            const effect = event.target.dataset.effect;
+            const isActive = event.target.classList.toggle('active');
+
+            if (isPlaying) {
+                switch (effect) {
+                    case 'tremolo':
+                        if (isActive) {
+                            tremoloNode.gain.setValueAtTime(1, audioContext.currentTime);
+                            const tremoloOsc = audioContext.createOscillator();
+                            tremoloOsc.frequency.setValueAtTime(4, audioContext.currentTime);
+                            tremoloOsc.connect(tremoloNode.gain);
+                            tremoloOsc.start();
+                            gainNode.disconnect();
+                            gainNode.connect(tremoloNode);
+                            tremoloNode.connect(analyser);
+                        } else {
+                            gainNode.disconnect();
+                            gainNode.connect(analyser);
+                        }
+                        break;
+                    case 'chorus':
+                        if (isActive) {
+                            chorusNode.delayTime.setValueAtTime(0.03, audioContext.currentTime);
+                            chorusNode.depth.setValueAtTime(0.002, audioContext.currentTime);
+                            chorusNode.frequency.setValueAtTime(1.5, audioContext.currentTime);
+                            gainNode.disconnect();
+                            gainNode.connect(chorusNode);
+                            chorusNode.connect(analyser);
+                        } else {
+                            gainNode.disconnect();
+                            gainNode.connect(analyser);
+                        }
+                        break;
+                    case 'reverb':
+                        if (isActive) {
+                            gainNode.disconnect();
+                            gainNode.connect(reverbNode);
+                            reverbNode.connect(analyser);
+                        } else {
+                            gainNode.disconnect();
+                            gainNode.connect(analyser);
+                        }
+                        break;
+                }
+            }
+        }
+
+        function makeDistortionCurve(amount) {
+            const k = typeof amount === 'number' ? amount : 50;
+            const n_samples = 44100;
+            const curve = new Float32Array(n_samples);
+            const deg = Math.PI / 180;
+
+            for (let i = 0; i < n_samples; i++) {
+                const x = (i * 2) / n_samples - 1;
+                curve[i] = ((3 + k) * x * 20 * deg) / (Math.PI + k * Math.abs(x));
+            }
+            return curve;
+        }
+
+        function visualize() {
+            const width = visualizer.width;
+            const height = visualizer.height;
+            analyser.fftSize = 2048;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            visualizerContext.clearRect(0, 0, width, height);
+
+            function draw() {
+                requestAnimationFrame(draw);
+                analyser.getByteTimeDomainData(dataArray);
+                visualizerContext.fillStyle = 'rgb(0, 0, 0)';
+                visualizerContext.fillRect(0, 0, width, height);
+                visualizerContext.lineWidth = 2;
+                visualizerContext.strokeStyle = 'rgb(0, 255, 0)';
+                visualizerContext.beginPath();
+
+                const sliceWidth = width * 1.0 / bufferLength;
+                let x = 0;
+
+                for (let i = 0; i < bufferLength; i++) {
+                    const v = dataArray[i] / 128.0;
+                    const y = v * height / 2;
+
+                    if (i === 0) {
+                        visualizerContext.moveTo(x, y);
+                    } else {
+                        visualizerContext.lineTo(x, y);
+                    }
+
+                    x += sliceWidth;
+                }
+
+                visualizerContext.lineTo(width, height / 2);
+                visualizerContext.stroke();
+            }
+
+            draw();
+        }
+
+        playButton.addEventListener('click', startTone);
+        stopButton.addEventListener('click', stopTone);
+        frequencySlider.addEventListener('input', updateFrequency);
+        volumeSlider.addEventListener('input', updateVolume);
+        waveformButtons.forEach(btn => btn.addEventListener('click', changeWaveform));
+        effectButtons.forEach(btn => btn.addEventListener('click', toggleEffect));
+
+        // Set initial displays
+        updateFrequency();
+        updateVolume();
     </script>
-  </body>
+</body>
 </html>
